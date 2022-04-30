@@ -1,0 +1,95 @@
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % diff ~/go/pkg/mod/github.com/\!chimera\!coder/anaconda@v2.0.0+incompatible/friends_followers.go ~/go/src/github.com/ChimeraCoder/anaconda/friends_followers.go 
+<!coder/anaconda@v2.0.0+incompatible/friends_followers.go ~/go/src/github.com/ChimeraCoder/anaconda/friends_followers.go 
+196a197,207
+> // GetListMembers implements /lists/members.json
+> func (a TwitterApi) GetListMembers(screenName string, listID int64, v url.Values) (c UserCursor, err error) {
+> 	v = cleanValues(v)
+> 	v.Set("list_id", strconv.FormatInt(listID, 10))
+> 	v.Set("screen_name", screenName)
+> 
+> 	response_ch := make(chan response)
+> 	a.queryQueue <- query{a.baseUrl + "/lists/members.json", v, &c, _GET, response_ch}
+> 	return c, (<-response_ch).err
+> }
+> 
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ls
+total 712
+drwxr-xr-x  5 Akira  staff     160  5  1 00:39 ./
+drwxr-xr-x  6 Akira  staff     192  5  1 00:38 ../
+-rw-r--r--  1 Akira  staff  355278  4 29 22:27 20220429-twlist.log
+-rwxr--r--  1 Akira  staff     430  4 27 21:11 make.sh*
+-rw-r--r--  1 Akira  staff    2940  4 27 20:35 twlist.go
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ./make.sh
++ GO111MODULE=off
++ go build twlist.go
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ls
+total 13736
+drwxr-xr-x  7 Akira  staff      224  5  1 00:52 ./
+drwxr-xr-x  6 Akira  staff      192  5  1 00:38 ../
+-rw-r--r--  1 Akira  staff   355278  4 29 22:27 20220429-twlist.log
+-rwxr--r--  1 Akira  staff      436  5  1 00:51 make.sh*
+-rwxr-xr-x  1 Akira  staff  6661504  5  1 00:52 twlist*
+-rw-r--r--  1 Akira  staff     2940  4 27 20:35 twlist.go
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ./twlist > 20220501-twlist.log
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ls
+total 14512
+drwxr-xr-x  8 Akira  staff      256  5  1 00:52 ./
+drwxr-xr-x  6 Akira  staff      192  5  1 00:38 ../
+-rw-r--r--  1 Akira  staff   355278  4 29 22:27 20220429-twlist.log
+-rw-r--r--  1 Akira  staff   355204  5  1 00:52 20220501-twlist.log
+-rwxr--r--  1 Akira  staff      436  5  1 00:51 make.sh*
+-rwxr--r--  1 Akira  staff      430  4 27 21:11 make.sh~*
+-rwxr-xr-x  1 Akira  staff  6661504  5  1 00:52 twlist*
+-rw-r--r--  1 Akira  staff     2940  4 27 20:35 twlist.go
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % 
+
+
+
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % diff 2022*-twlist.log
+63c63
+< 1250h2	"Haruka"	"Tama Art University☆\n#ミスiD2021 アウトサイダー賞🦂"
+---
+> 1250h2	"Haruka Nakagawa"	""
+149c149
+< nankini58maaya	"仁科茉彩(なんキニ！)"	"5月9日生誕祭！！！！大学4年生残余単位26(@Nankini2019)毎日配信やってますそろそろ2年経つ〜毎日構ってください！"
+---
+> nankini58maaya	"仁科茉彩(なんキニ！)"	"5月9日生誕祭！！！！大学4年生残余単位26(@Nankini2019)毎日配信やってますそろそろ2年経つ〜毎日構ってください！ひかりに100円"
+189c189
+< CRNS_AMEBA	"AMEBA"	"クロスノエシス @CROSSNOESIS https://t.co/8p76xdskLd ブログ水曜日🐋 https://t.co/7FjvMkeHUa 4/12 1st full album「circle」リリース"
+---
+> CRNS_AMEBA	"AMEBA"	"クロスノエシス @CROSSNOESIS https://t.co/8p76xdskLd ブログ水曜日🐋 https://t.co/7FjvMkeHUa 5/27 LIQUIDROOM"
+207c207
+< usakura_beni	"宇佐蔵べに"	"💐https://t.co/4d5KW6ivnB TOKYO⇄KOBE NARUHESON;S"
+---
+> usakura_beni	"宇佐蔵べに"	"https://t.co/vLl79xY3se TOKYO⇄KOBE NARUHESON;S"
+212c212
+< apokali_erika	"ゑりかちゃんべいびー🌐"	"緑のサイリウム振ってくれたら喜こんでなつきます👶🏻🥒6月10日生誕祭会いに来て🎂❕@APOKALIPPPS_NOW @erikachanbaby"
+---
+> apokali_erika	"ゑりかちゃんべいびー🌐"	"緑のサイリウム振ってくれたら喜こんでなつきます👶🏻🥒6月10日生誕祭来て🎂❕@APOKALIPPPS_NOW @erikachanbaby"
+217c217
+< PUNK37kg	"マイモ・リティ"	"NOT IDOL 20' ex:税金5%(バンド) 撮られます 描きます SNSは生活がテーマです necomugicha shop https://t.co/x31qKZcaRv"
+---
+> PUNK37kg	"マイモ・リティ"	"NOT IDOL 20' 涅槃の犬 Gt,Vo. ex:税金5%(バンド) 撮られます 描きます SNSは生活がテーマです necomugicha shop https://t.co/x31qKZcaRv"
+244c244
+< sapoterenaco	"梵栽"	"グラフィックデザイナー、たまに占星術師、元医療大麻農家勤務。趣味はアマゾンでシャーマン修行、自然療法で自己治療、自然農法で家庭菜園、野草と薬草。"
+---
+> sapoterenaco	"梵栽"	"グラフィックデザイナー、たまに占星術師、元医療大麻農家勤務。趣味はアマゾンでシャーマン修行、自然療法で自己治療、無肥料無農薬で家庭菜園、野草と薬草。"
+699c699
+< http4020	"姫川風子 NEW PROJECT 「OROPO」"	"たまにコンカフェゲスト出勤します！DJひめかわいい。tipsy records 所属。New projectユニット「OROPO」 、idol、coming soon....本人とマネージャーがログインしています。DJ.モデル.グラビア.演技等々。お仕事依頼はdm又、himetan.ovo@gmail.com"
+---
+> http4020	"姫川風子 NEW PROJECT 「OROPO」"	"たまにコンカフェゲスト。DJひめかわいい。tipsy records 所属。New projectユニット「OROPO」 相方のっとまん。idol coming soon....本人とマネージャーがログインしています。DJ.モデル.グラビア.演技等々。お仕事依頼はdm又、himetan.ovo@gmail.com"
+713c713
+< electro_pura	"I　💙💛"	"文系専門職。unicef,wfp,国境なき医師団に月3千円ずつ。「へーゲルは、ただラディカル化したカントであり、〈絶対者〉への否定的な接近というカントの歩みを、否定性としての〈絶対者〉そのものというところにまで進める。」（スラヴォイ・ジジェク）"
+---
+> electro_pura	"I　💙💛"	"文系専門職。unicef,wfp,国境なき医師団に月3千円ずつ。「へーゲルは、ただラディカル化したカントであり、〈絶対者〉への否定的な接近というカントの歩みを、否定性としての〈絶対者〉そのものというところにまで進める。」（ジジェク）"
+1452c1452
+< yuki_etoh	"江藤有希"	"ヴァイオリン弾き、作編曲。アルバム「hue」「tatto」「memor」 https://t.co/pMYhigpyl6●最新アルバムサブスク→https://t.co/BovweXOL7c●中山うり 5/14（土）常陸太田●江藤有希トリオ w橋本歩、笹子重治 5/3（火）吉祥寺●アン・サリー 5/20&21 青山"
+---
+> yuki_etoh	"江藤有希"	"ヴァイオリン弾き、作編曲。アルバム「hue」「tatto」「memor」 https://t.co/pMYhigpyl6●最新アルバムサブスクhttps://t.co/BovweXOL7c●江藤有希トリオ w橋本歩、笹子重治 5/3（火）吉祥寺●中山うり 5/14（土）常陸太田●アン・サリー 5/20&21 青山"
+1599c1599
+< yuki_etoh	"江藤有希"	"ヴァイオリン弾き、作編曲。アルバム「hue」「tatto」「memor」 https://t.co/pMYhigpyl6●最新アルバムサブスク→https://t.co/BovweXOL7c●中山うり 5/14（土）常陸太田●江藤有希トリオ w橋本歩、笹子重治 5/3（火）吉祥寺●アン・サリー 5/20&21 青山"
+---
+> yuki_etoh	"江藤有希"	"ヴァイオリン弾き、作編曲。アルバム「hue」「tatto」「memor」 https://t.co/pMYhigpyl6●最新アルバムサブスクhttps://t.co/BovweXOL7c●江藤有希トリオ w橋本歩、笹子重治 5/3（火）吉祥寺●中山うり 5/14（土）常陸太田●アン・サリー 5/20&21 青山"
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % 
+
+Process shell exited abnormally with code 1
