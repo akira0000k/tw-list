@@ -37,13 +37,14 @@ func main(){
 	uv["count"] = []string{"100"}
 	lists, err := api.GetListsOwnedBy(id, uv)
 	if err != nil {
-		fmt.Println("%#v\n", err)
+		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 	//jsonLists, _ := json.Marshal(lists)
 	//fmt.Println(string(jsonLists))
 
 	for i, list := range lists {
+		fmt.Fprint(os.Stderr, ".")
 		fmt.Printf("%d.\n", i + 1)
 		fmt.Println("Name: ", list.Name)
 		fmt.Println("URL: ", list.URL)
@@ -62,7 +63,7 @@ func main(){
 			//users, err := api.GetListMembers("akira0000k", list.Id, uv)
 			users, err := api.GetListMembers("", list.Id, uv)
 			if err != nil {
-				fmt.Println("%#v\n", err)
+				fmt.Fprintln(os.Stderr, err.Error())
 				os.Exit(1)
 			}
 			//jsonUsers, _ := json.Marshal(users)
@@ -74,6 +75,7 @@ func main(){
 			}
 		}
 	}
+	fmt.Fprintln(os.Stderr, "")
 }
 
 func name2id(screen_name string) (id int64) {
@@ -81,7 +83,7 @@ func name2id(screen_name string) (id int64) {
 	uv.Set("skip_status", "true") //データ減少
 	users, err := api.GetUsersLookup(screen_name, uv)
 	if err != nil {
-		fmt.Println("%#v\n", err)
+		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 	//jsonUser, _ := json.Marshal(users[0])
@@ -100,7 +102,7 @@ func connectTwitterApi() *anaconda.TwitterApi {
 	raw, error := ioutil.ReadFile(usr.HomeDir + "/twitter/twitterAccount.json")
 
 	if error != nil {
-		fmt.Println(error.Error())
+		fmt.Fprintln(os.Stderr, error.Error())
 		return nil
 	}
 
