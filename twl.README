@@ -30,7 +30,7 @@ drwxr-xr-x  6 Akira  staff      192  5  1 00:38 ../
 -rwxr--r--  1 Akira  staff      436  5  1 00:51 make.sh*
 -rwxr-xr-x  1 Akira  staff  6661504  5  1 00:52 twlist*
 -rw-r--r--  1 Akira  staff     2940  4 27 20:35 twlist.go
-Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ./twlist > 20220501-twlist.log
+Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ./twlist -name=akira0000k > 20220501-twlist.log
 Akira@MBP-2 ~/go/src/github.com/akira0000k/tw-list % ls
 total 14512
 drwxr-xr-x  8 Akira  staff      256  5  1 00:52 ./
